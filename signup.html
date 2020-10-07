@@ -1,0 +1,93 @@
+ <!DOCTYPE html>
+ <html>
+     <head>
+        <title>Signup</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+            
+            
+            <!-- MATERIAL DESIGN ICONIC FONT -->
+        <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+                
+                <!-- STYLE CSS -->
+        <link rel="stylesheet" href="design_files/css/style.css">
+
+        
+       <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-auth.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-storage.js"></script>
+
+     
+
+     </head>
+
+     <body>
+         <div class="wrapper" style="Background-image: url('design_files/images/registerback.jpg') ">
+            <div class="inner">
+                <div class="image-holder">
+                    <img src="design_files/images/registration-form-1.jpg">
+                </div>
+                <form id="signup-form">
+                    <h3>Register</h3>
+                    <div class ="form-wrapper">
+                        <input id="signup-email" type="email" placeholder="Email Address" class="form-control">
+                        <i class="zmdi zmdi-email"></i>
+                    </div>
+       
+                    <div class ="form-wrapper">
+                       <input id="signup-password" type="password" placeholder="password" class="form-control">
+                       <i class="zmdi zmdi-lock"></i>
+                   </div>
+       
+                   
+       
+                   <div class="form-group container-login100-form-btn">
+                    <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+                       
+                        
+                   </div>
+       
+                   <div class="w-full text-center" style="margin-top: 49%; font-size: 15px;">
+                       <a href="signin.html" class="test-dark">
+                           Already have an account?
+                       </a>
+                   </div>
+       
+       
+                </form>
+
+            </div>
+
+         </div>
+          <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+  var config = {
+      apiKey: "AIzaSyAb2QdhBmxWSj6cLlpxTrc3biZf08IymVA",
+    authDomain: "woowend-5e74a.firebaseapp.com",
+    databaseURL: "https://woowend-5e74a.firebaseio.com",
+    projectId: "woowend-5e74a"
+    };
+    firebase.initializeApp(config);
+    
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // update firestore settings
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts/authsignup.js"></script>
+  <script src="scripts/index.js"></script>
+       
+
+        
+
+     </body>
+ </html>

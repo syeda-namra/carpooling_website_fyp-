@@ -1,0 +1,129 @@
+<?php include('server.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up </title>
+   
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="Signup/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="Signup/css/style.css">
+</head>
+<body >
+
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="images/signup.\" alt="car image">
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" action="signup.php">
+					<?php include('errors.php'); ?>
+                        <h2>SIGN UP</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name"> First Name :</label>
+                                <input type="text" name="first_name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name :</label>
+                                <input type="text" name="last_name" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nic_no">NIC Number:</label>
+                            <input type="text" name="nic_no"  required/>
+                        </div>
+                        <div class="form-radio">
+                            <label for="gender" class="radio-label">Gender :</label>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" value="male" id="male" checked>
+                                <label for="male">Male</label>
+                                <span class="check"></span>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender"  value="female" id="female" >
+                                <label for="female">Female</label>
+                                <span class="check"></span>
+                            </div>
+                        </div>
+                      
+
+ 
+                          <div class="form-group">
+                            <label for="role_type">Sign up as</label>
+                            <div class="form-select">
+                            <select class="form-control" id="seeAnotherFieldGroup">
+                                  <option value="Rider">Rider</option>
+                                  <option value="Driver">Driver</option>
+
+                            </select>
+                            <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+
+                          </div>
+                <div class="form-group" id="otherFieldGroupDiv">
+                            <div class ="form-row">
+                              <div class="form-group" >
+                                <label for="otherField1">Lisence Number</label>
+                                <input type="text" class="form-control w-100" id="otherField1">
+
+                              </div>
+                              <div class="form-group" >
+                                <label for="otherField2">Vehicle Number</label>
+                                <input type="text" class="form-control w-100" id="otherField2">
+                              </div>
+                            </div>
+
+                         </div>
+                       
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="text" name="age"  >
+                               </div>
+                                
+
+                            
+                        
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" name="address"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_no">Mobile Number :</label>
+                            <input type="text" name="mobile_no" >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="email" name="email" />
+                        </div>
+						<div class="form-group">
+                            <label for="password">Password :</label>
+                            <input type="password" name="password_1"/>
+                        </div>
+						<div class="form-group">
+                            <label for="password">Confirm Password :</label>
+                            <input type="password" name="password_2"/>
+                        </div>
+                        <div class="form-submit">
+                           
+                            <input type="submit" value="Submit Form" class="submit" name="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="Signup/vendor/jquery/jquery.min.js"></script>
+    <script src="Signup/js/main.js"></script>
+</body>

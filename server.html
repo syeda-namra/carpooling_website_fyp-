@@ -1,0 +1,106 @@
+<?php
+session_start();
+
+// initializing variables
+$first_name = "";
+$last_name="";
+$nic_no="";
+$gender="";
+$role_type="";
+$email    = "";
+$age="";
+$address="";
+$mobile_no="";
+$errors = array(); 
+
+// connect to the database
+$db = mysqli_connect('localhost', 'root', '', 'woowend');
+
+// REGISTER USER
+if (isset($_POST['submit'])) {
+  // receive all input values from the form
+  $first_name = mysqli_real_escape_string($db, $_POST['first_name']);
+  $last_name = mysqli_real_escape_string($db, $_POST['last_name']);
+  $nic_no = mysqli_real_escape_string($db, $_POST['nic_no']);
+  $gender = mysqli_real_escape_string($db, $_POST['gender']);
+  $role_type = mysqli_real_escape_string($db, $_POST['role_type']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $age = mysqli_real_escape_string($db, $_POST['age']);
+  $address = mysqli_real_escape_string($db, $_POST['address']);
+  $mobile_no = mysqli_real_escape_string($db, $_POST['mobile_no']);
+  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+
+  // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($first_name)) { array_push($errors, "first_name is required"); }
+  if (empty($last_name)) { array_push($errors, "last_name is required"); }
+  if (empty($nic_no)) { array_push($errors, "NIC Number is required");  }
+  if (empty($gender)) { array_push($errors, "Gender is required"); }
+  if (empty($address)) { array_push($errors, "Address is required"); }
+  if (empty($mobile_no)) { array_push($errors, "Mobile is required"); }
+  if (empty($email)) { array_push($errors, "Email is required"); }
+  if (empty($password_1)) { array_push($errors, "Password is required"); }
+  if ($password_1 != $password_2) {
+	array_push($errors, "The two passwords do not match");
+  }
+
+  // first check the database to make sure 
+  // a user does not already exist with the same first_name and/or email
+  $user_check_query = "SELECT * FROM user WHERE mobile_no='$mobile_no' OR email='$email'  LIMIT 1";
+  $result = mysqli_query($db, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
+  
+  if ($user) { // if user exists
+    if ($user['mobile_no'] === $mobile_no) {
+      array_push($errors, "Mobile Number already exists");
+    }
+    if ($user['email'] === $email) {
+      array_push($errors, "email already exists");
+    }
+  }
+
+  // Finally, register user if there are no errors in the form
+  if (count($errors) == 0) {
+  	$password = md5($password_1);//encrypt the password before saving in the database
+
+  	$query = "INSERT INTO user (first_name,last_name,nic_no,gender,role_type,age,address,mobile_no ,email, password) 
+  			  VALUES('$first_name','$last_name','$nic_no','$gender','$role_type','$age','$address','$mobile_no', '$email', '$password')";
+  	mysqli_query($db, $query);
+  	$_SESSION['first_name'] = $first_name;
+  	$_SESSION['success'] = "You are now logged in";
+  	header('location: Home.php');
+  }
+}
+
+// ... login code
+if (isset($_POST['login'])) {
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+
+  if (empty($email)) {
+  	array_push($errors, "Email is required");
+  }
+  if (empty($password)) {
+  	array_push($errors, "Password is required");
+  }
+
+  if (count($errors) == 0) {
+  	$password = md5($password);
+  	$query = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+  	$results = mysqli_query($db, $query);
+  	if (mysqli_num_rows($results) == 1) {
+  	  $_SESSION['email'] = $email;
+  	  $_SESSION['success'] = "You are now logged in";
+  	  header('location: Home.php');
+  	}else {
+  		array_push($errors, "Wrong email/password combination");
+  	}
+  }
+}
+
+?>
+
+
+
+
